@@ -27,8 +27,8 @@ func main() {
 
 	go func() {
 		for _ = range ticker.C {
-			log.Printf("triggering alarms at %s", url)
-			err := callAlarm(url)
+			log.Printf("triggering post to %s", url)
+			err := callUrl(url)
 			if err != nil {
 				log.Printf("error for requst: %v", err)
 			}
@@ -38,7 +38,7 @@ func main() {
 	select {}
 }
 
-func callAlarm(url string) error {
+func callUrl(url string) error {
 	resp, err := http.Post(url, "application/json", nil)
     if err != nil {
 		return err
